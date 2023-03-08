@@ -20,11 +20,18 @@ butInstall.addEventListener('click', async () => {
 
   promptEvent.prompt();
 
-  // TODO: Notice line 9 above. We want the same line here, but the value should be set to null now.
-  // Insert line here
+  window.deferredPrompt = null;
 
-  // TODO: Notice line 10 above. We want the same line here, but the hidden value should be set to true.
-  // Insert line here
+  butInstall.classList.toggle('hidden', true);
+
+  const choiceResult = await promptEvent.userChoice;
+  console.log(choiceResult.outcome);
+
+  if (choiceResult.outcome === 'accepted') {
+    console.log('User accepted the A2HS prompt');
+  } else {
+    console.log('User dismissed the A2HS prompt');
+  }
 });
 
 window.addEventListener('appinstalled', (event) => {
